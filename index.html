@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vəzifələrim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Vəzifələrim</h1>
+
+        <div class="progress-section">
+            <h2>Gündəlik İrəliləyiş</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="dailyProgressBar"></div>
+            </div>
+            <p><span id="completedDailyTasksCount">0</span>/ <span id="totalDailyTasksCount">0</span> tapşırıq tamamlandı</p>
+        </div>
+
+        <div class="section" id="daily-plan">
+            <h2>Gündəlik Vəzifələr</h2>
+
+            <div class="time-block">
+                <h3>Fəcr (Səhər)</h3>
+                <div class="task-input-group">
+                    <input type="text" placeholder="Tapşırığı daxil edin" class="new-task-text">
+                    <input type="number" placeholder="Vaxt (dəq)" class="new-task-time">
+                    <select class="new-task-category">
+                        <option value="dini">Dini</option>
+                        <option value="dunyevi">Dünyəvi</option>
+                    </select>
+                    <button class="add-task-btn">Əlavə et</button>
+                </div>
+                <ul class="tasks-list" data-time-block="fajr"></ul>
+            </div>
+
+            <div class="time-block">
+                <h3>Zöhr (Günorta)</h3>
+                <div class="task-input-group">
+                    <input type="text" placeholder="Tapşırığı daxil edin" class="new-task-text">
+                    <input type="number" placeholder="Vaxt (dəq)" class="new-task-time">
+                    <select class="new-task-category">
+                        <option value="dini">Dini</option>
+                        <option value="dunyevi">Dünyəvi</option>
+                    </select>
+                    <button class="add-task-btn">Əlavə et</button>
+                </div>
+                <ul class="tasks-list" data-time-block="dhuhr"></ul>
+            </div>
+
+            <div class="time-block">
+                <h3>Əsr (Günorta Sonrası)</h3>
+                <div class="task-input-group">
+                    <input type="text" placeholder="Tapşırığı daxil edin" class="new-task-text">
+                    <input type="number" placeholder="Vaxt (dəq)" class="new-task-time">
+                    <select class="new-task-category">
+                        <option value="dini">Dini</option>
+                        <option value="dunyevi">Dünyəvi</option>
+                    </select>
+                    <button class="add-task-btn">Əlavə et</button>
+                </div>
+                <ul class="tasks-list" data-time-block="asr"></ul>
+            </div>
+
+            <div class="time-block">
+                <h3>Məğrib (Axşam)</h3>
+                <div class="task-input-group">
+                    <input type="text" placeholder="Tapşırığı daxil edin" class="new-task-text">
+                    <input type="number" placeholder="Vaxt (dəq)" class="new-task-time">
+                    <select class="new-task-category">
+                        <option value="dini">Dini</option>
+                        <option value="dunyevi">Dünyəvi</option>
+                    </select>
+                    <button class="add-task-btn">Əlavə et</button>
+                </div>
+                <ul class="tasks-list" data-time-block="maghrib"></ul>
+            </div>
+
+            <div class="time-block">
+                <h3>İşa (Gecə)</h3>
+                <div class="task-input-group">
+                    <input type="text" placeholder="Tapşırığı daxil edin" class="new-task-text">
+                    <input type="number" placeholder="Vaxt (dəq)" class="new-task-time">
+                    <select class="new-task-category">
+                        <option value="dini">Dini</option>
+                        <option value="dunyevi">Dünyəvi</option>
+                    </select>
+                    <button class="add-task-btn">Əlavə et</button>
+                </div>
+                <ul class="tasks-list" data-time-block="isha"></ul>
+            </div>
+        </div>
+
+        <div class="section" id="weekly-plan">
+            <h2>Həftəlik Vəzifələr</h2>
+            <div class="task-input-group">
+                <input type="text" placeholder="Həftəlik tapşırığı daxil edin" class="new-weekly-task-text">
+                <select class="new-weekly-task-category">
+                    <option value="dini">Dini</option>
+                    <option value="dunyevi">Dünyəvi</option>
+                </select>
+                <button class="add-weekly-task-btn">Əlavə et</button>
+            </div>
+            <ul class="tasks-list" id="weekly-tasks-list"></ul>
+        </div>
+
+        <div class="section" id="journal-section">
+            <h2>Jurnal</h2>
+            <div class="journal-entry">
+                <h3>Günün ən vacib dini öyrənməsi:</h3>
+                <textarea id="diniOyrJournal" rows="3"></textarea>
+            </div>
+            <div class="journal-entry">
+                <h3>Günün ən vacib dünyəvi nailiyyəti:</h3>
+                <textarea id="dunyeviNailJournal" rows="3"></textarea>
+            </div>
+            <div class="journal-entry">
+                <h3>Şükür etdiyin bir an:</h3>
+                <textarea id="sukrAnJournal" rows="3"></textarea>
+            </div>
+            <button id="saveJournalBtn">Jurnalı Yadda Saxla</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

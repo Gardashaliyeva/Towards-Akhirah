@@ -1,0 +1,289 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #777;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+.time-block {
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.tasks-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.tasks-list li {
+    background-color: #fff;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.tasks-list li:last-child {
+    margin-bottom: 0;
+}
+
+.tasks-list li input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.tasks-list li label {
+    flex-grow: 1;
+    cursor: pointer;
+    margin-right: 10px; /* Space before timer/buttons */
+}
+
+.tasks-list li.completed label {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.timer-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: auto; /* Push to the right */
+    transition: background-color 0.2s ease;
+}
+
+.timer-btn:hover {
+    background-color: #0056b3;
+}
+
+.timer-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.timer-display {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #007bff;
+    min-width: 60px; /* Ensure space for time display */
+    text-align: right;
+}
+
+.delete-task-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.delete-task-btn:hover {
+    background-color: #c82333;
+}
+
+/* Add Task Input Group */
+.task-input-group, .new-weekly-task-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: center;
+}
+
+.task-input-group input[type="text"],
+.task-input-group input[type="number"],
+.task-input-group select,
+.new-weekly-task-input-group input[type="text"],
+.new-weekly-task-input-group select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1; /* Allow inputs to grow */
+    min-width: 100px; /* Minimum width for inputs */
+}
+
+.task-input-group button, .add-weekly-task-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.task-input-group button:hover, .add-weekly-task-btn:hover {
+    background-color: #218838;
+}
+
+/* Progress Bar */
+.progress-section {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.progress-bar-container {
+    width: 80%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 20px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-section p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Journal Section */
+.journal-entry {
+    margin-bottom: 20px;
+}
+
+.journal-entry h3 {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.journal-entry textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    resize: vertical;
+    min-height: 80px;
+}
+
+#saveJournalBtn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 20px;
+}
+
+#saveJournalBtn:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    .progress-bar-container {
+        width: 95%;
+    }
+    .tasks-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    .tasks-list li label {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .tasks-list li input[type="checkbox"] {
+        margin-bottom: 5px;
+    }
+    .timer-btn, .delete-task-btn {
+        margin-left: 0;
+        margin-top: 8px;
+        width: 100%; /* Make buttons full width on small screens */
+    }
+    .timer-display {
+        text-align: left;
+        margin-left: 0;
+        margin-top: 5px;
+        width: 100%;
+    }
+    .task-input-group, .new-weekly-task-input-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .task-input-group input,
+    .task-input-group select,
+    .task-input-group button,
+    .new-weekly-task-input-group input,
+    .new-weekly-task-input-group select,
+    .new-weekly-task-input-group button {
+        width: 100%;
+        min-width: unset; /* Remove min-width for mobile */
+    }
+}
