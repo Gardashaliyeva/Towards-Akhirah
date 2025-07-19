@@ -8,9 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const weeklyTasksList = document.getElementById('weekly-tasks-list');
     
-    const dailyProgressBar = document.getElementById('dailyProgressBar');
-    const completedDailyTasksCountSpan = document.getElementById('completedDailyTasksCount');
-    const totalDailyTasksCountSpan = document.getElementById('totalDailyTasksCount');
+    // Daily progress bar elements
+    const diniProgressBar = document.getElementById('diniProgressBar');
+    const completedDiniTasksCountSpan = document.getElementById('completedDiniTasksCount');
+    const totalDiniTasksCountSpan = document.getElementById('totalDiniTasksCount');
+
+    const dunyeviProgressBar = document.getElementById('dunyeviProgressBar');
+    const completedDunyeviTasksCountSpan = document.getElementById('completedDunyeviTasksCount');
+    const totalDunyeviTasksCountSpan = document.getElementById('totalDunyeviTasksCount');
+
+    // Weekly progress bar elements
+    const weeklyDiniProgressBar = document.getElementById('weeklyDiniProgressBar');
+    const completedWeeklyDiniTasksCountSpan = document.getElementById('completedWeeklyDiniTasksCount');
+    const totalWeeklyDiniTasksCountSpan = document.getElementById('totalWeeklyDiniTasksCount');
+
+    const weeklyDunyeviProgressBar = document.getElementById('weeklyDunyeviProgressBar');
+    const completedWeeklyDunyeviTasksCountSpan = document.getElementById('completedWeeklyDunyeviTasksCount');
+    const totalWeeklyDunyeviTasksCountSpan = document.getElementById('totalWeeklyDunyeviTasksCount');
+
 
     const saveJournalBtn = document.getElementById('saveJournalBtn');
     const diniOyrJournal = document.getElementById('diniOyrJournal');
@@ -86,28 +101,75 @@ document.addEventListener('DOMContentLoaded', () => {
         dunyeviNailJournal.value = localStorage.getItem('dunyeviNailJournal') || '';
         sukrAnJournal.value = localStorage.getItem('sukrAnJournal') || '';
 
-        updateDailyProgress(); // Update progress bar after loading
+        updateProgressBars(); // Update all progress bars after loading
     }
 
-    function updateDailyProgress() {
-        let completedCount = 0;
-        let totalCount = 0;
+    function updateProgressBars() {
+        // Daily Progress
+        let completedDiniCount = 0;
+        let totalDiniCount = 0;
+        let completedDunyeviCount = 0;
+        let totalDunyeviCount = 0;
 
         for (const block in dailyTimeBlocks) {
             dailyTimeBlocks[block].querySelectorAll('li').forEach(li => {
-                totalCount++;
                 const checkbox = li.querySelector('input[type="checkbox"]');
-                if (checkbox.checked) {
-                    completedCount++;
+                if (li.dataset.category === 'dini') {
+                    totalDiniCount++;
+                    if (checkbox.checked) {
+                        completedDiniCount++;
+                    }
+                } else if (li.dataset.category === 'dunyevi') {
+                    totalDunyeviCount++;
+                    if (checkbox.checked) {
+                        completedDunyeviCount++;
+                    }
                 }
             });
         }
 
-        const progress = totalCount === 0 ? 0 : (completedCount / totalCount) * 100;
-        dailyProgressBar.style.width = `${progress}%`;
-        completedDailyTasksCountSpan.textContent = completedCount;
-        totalDailyTasksCountSpan.textContent = totalCount;
+        const diniProgress = totalDiniCount === 0 ? 0 : (completedDiniCount / totalDiniCount) * 100;
+        diniProgressBar.style.width = `${diniProgress}%`;
+        completedDiniTasksCountSpan.textContent = completedDiniCount;
+        totalDiniTasksCountSpan.textContent = totalDiniCount;
+
+        const dunyeviProgress = totalDunyeviCount === 0 ? 0 : (completedDunyeviCount / totalDunyeviCount) * 100;
+        dunyeviProgressBar.style.width = `${dunyeviProgress}%`;
+        completedDunyeviTasksCountSpan.textContent = completedDunyeviCount;
+        totalDunyeviTasksCountSpan.textContent = totalDunyeviCount;
+
+        // Weekly Progress
+        let completedWeeklyDiniCount = 0;
+        let totalWeeklyDiniCount = 0;
+        let completedWeeklyDunyeviCount = 0;
+        let totalWeeklyDunyeviCount = 0;
+
+        weeklyTasksList.querySelectorAll('li').forEach(li => {
+            const checkbox = li.querySelector('input[type="checkbox"]');
+            if (li.dataset.category === 'dini') {
+                totalWeeklyDiniCount++;
+                if (checkbox.checked) {
+                    completedWeeklyDiniCount++;
+                }
+            } else if (li.dataset.category === 'dunyevi') {
+                totalWeeklyDunyeviCount++;
+                if (checkbox.checked) {
+                    completedWeeklyDunyeviCount++;
+                }
+            }
+        });
+
+        const weeklyDiniProgress = totalWeeklyDiniCount === 0 ? 0 : (completedWeeklyDiniCount / totalWeeklyDiniCount) * 100;
+        weeklyDiniProgressBar.style.width = `${weeklyDiniProgress}%`;
+        completedWeeklyDiniTasksCountSpan.textContent = completedWeeklyDiniCount;
+        totalWeeklyDiniTasksCountSpan.textContent = totalWeeklyDiniCount;
+
+        const weeklyDunyeviProgress = totalWeeklyDunyeviCount === 0 ? 0 : (completedWeeklyDunyeviCount / totalWeeklyDunyeviCount) * 100;
+        weeklyDunyeviProgressBar.style.width = `${weeklyDunyeviProgress}%`;
+        completedWeeklyDunyeviTasksCountSpan.textContent = completedWeeklyDunyeviCount;
+        totalWeeklyDunyeviTasksCountSpan.textContent = totalWeeklyDunyeviCount;
     }
+
 
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -195,8 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 li.classList.remove('completed');
             }
-            updateDailyProgress();
-            saveState();
+            updateProgressBars(); // Update all progress bars
+            saveState(); // Save state after every change
         });
 
         if (!isWeekly) {
@@ -211,9 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteBtn.addEventListener('click', () => {
             if (confirm('Bu tapşırığı silməyə əminsiniz?')) {
                 parentList.removeChild(li);
-                if (!isWeekly) {
-                    updateDailyProgress();
-                }
+                updateProgressBars(); // Update all progress bars
                 saveState();
             }
         });
@@ -242,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 createTaskElement(taskData, targetList);
                 timeBlockDiv.querySelector('.new-task-text').value = '';
                 timeBlockDiv.querySelector('.new-task-time').value = '';
-                updateDailyProgress();
+                updateProgressBars(); // Update all progress bars
                 saveState();
             } else {
                 alert('Zəhmət olmasa, tapşırıq mətnini və vaxtı (dəqiqə ilə, müsbət ədəd) daxil edin.');
@@ -265,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             createTaskElement(taskData, weeklyTasksList, true);
             document.querySelector('.new-weekly-task-text').value = '';
+            updateProgressBars(); // Update all progress bars (specifically weekly ones)
             saveState();
         } else {
             alert('Zəhmət olmasa, həftəlik tapşırıq mətnini daxil edin.');

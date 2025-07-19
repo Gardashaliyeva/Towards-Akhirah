@@ -12,10 +12,17 @@
 
         <div class="progress-section">
             <h2>Gündəlik İrəliləyiş</h2>
+            <h3>Dini Vəzifələr</h3>
             <div class="progress-bar-container">
-                <div class="progress-bar" id="dailyProgressBar"></div>
+                <div class="progress-bar dini" id="diniProgressBar"></div>
             </div>
-            <p><span id="completedDailyTasksCount">0</span>/ <span id="totalDailyTasksCount">0</span> tapşırıq tamamlandı</p>
+            <p><span id="completedDiniTasksCount">0</span>/ <span id="totalDiniTasksCount">0</span> dini tapşırıq tamamlandı</p>
+
+            <h3>Dünyəvi Vəzifələr</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar dunyevi" id="dunyeviProgressBar"></div>
+            </div>
+            <p><span id="completedDunyeviTasksCount">0</span>/ <span id="totalDunyeviTasksCount">0</span> dünyəvi tapşırıq tamamlandı</p>
         </div>
 
         <div class="section" id="daily-plan">
@@ -94,6 +101,19 @@
 
         <div class="section" id="weekly-plan">
             <h2>Həftəlik Vəzifələr</h2>
+            <div class="progress-section">
+                <h3>Həftəlik Dini Vəzifələr</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar dini" id="weeklyDiniProgressBar"></div>
+                </div>
+                <p><span id="completedWeeklyDiniTasksCount">0</span>/ <span id="totalWeeklyDiniTasksCount">0</span> dini tapşırıq tamamlandı</p>
+
+                <h3>Həftəlik Dünyəvi Vəzifələr</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar dunyevi" id="weeklyDunyeviProgressBar"></div>
+                </div>
+                <p><span id="completedWeeklyDunyeviTasksCount">0</span>/ <span id="totalWeeklyDunyeviTasksCount">0</span> dünyəvi tapşırıq tamamlandı</p>
+            </div>
             <div class="task-input-group">
                 <input type="text" placeholder="Həftəlik tapşırığı daxil edin" class="new-weekly-task-text">
                 <select class="new-weekly-task-category">
